@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "1032074784863",
+    "firebase_url": "https://cryptrix-2k19.firebaseio.com",
+    "project_id": "cryptrix-2k19",
+    "storage_bucket": "cryptrix-2k19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032074784863:android:e95e15474b4acb54",
+        "android_client_info": {
+          "package_name": "com.srk.barcodescanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032074784863-r23luid0bo9nlro28fg7lb17703s80bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnRSTVljKlszYUJ56UptYBFZJsIrc2O7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032074784863-r23luid0bo9nlro28fg7lb17703s80bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032074784863:android:07bfa970126bb352",
+        "android_client_info": {
+          "package_name": "com.srk.cryptrixevents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032074784863-t7rbbd8dn781up0emd3tsepm4jtpe69p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.srk.cryptrixevents",
+            "certificate_hash": "a57f06580d87a1b9002e17a835ba5a799e53c3ee"
+          }
+        },
+        {
+          "client_id": "1032074784863-r23luid0bo9nlro28fg7lb17703s80bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnRSTVljKlszYUJ56UptYBFZJsIrc2O7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032074784863-r23luid0bo9nlro28fg7lb17703s80bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
