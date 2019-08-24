@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,7 +19,8 @@ public class scanner extends AppCompatActivity implements ZXingScannerView.Resul
     public String barcodeValue;
     ZXingScannerView camScanner;
     public pojo_userDetails userDetails;
-    static int count = 0;
+    public pojo_ObjectHolder temp;
+    public DatabaseReference obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,11 @@ public class scanner extends AppCompatActivity implements ZXingScannerView.Resul
         setContentView(R.layout.activity_scanner);
         camScanner = new ZXingScannerView(this);
         setContentView(camScanner);
-
     }
+
     @Override
     public void handleResult(Result rawResult) {
-        barcodeValue=rawResult.getText();
+        barcodeValue = rawResult.getText();
         Log.e("HERE",barcodeValue);
         DatabaseReference dbObj = FirebaseDatabase.getInstance().getReference("RegisteredUsers");
         dbObj.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -40,44 +40,64 @@ public class scanner extends AppCompatActivity implements ZXingScannerView.Resul
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(barcodeValue).exists()) {
                     try {
-                        Log.e("HERE","VANTENDA VENNA");
-                        pojo_ObjectHolder temp = new pojo_ObjectHolder();
+                        temp = new pojo_ObjectHolder();
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
                             temp = child.getValue(pojo_ObjectHolder.class);
                             if (temp.barCodeValue.equals(barcodeValue)) {
                                 break;
                             }
                         }
-                        if (temp.barCodeValue.equals(barcodeValue)) {
-                            Log.e("HERE","KEDACHUDUTHU");
-                            if(count == 0){
-                                Log.e("HERE",temp.phoneNumber);
-                                Log.e("HERE",temp.uniqueId);
-                                Log.e("HERE",temp.userName);
-                                userDetails = pojo_userDetails.getInstanceOf();
-                                userDetails.setParticipantOneUniqueId(temp.uniqueId);
-                                userDetails.setParticipantOne(temp.userName);
-                                userDetails.setPhoneNumberOne(temp.phoneNumber);
-                                MainActivity.name1.setText(userDetails.getParticipantOne());
-                                MainActivity.phone1.setText(userDetails.getPhoneNumberOne());
-                                count=1;
+                        Log.e("HERE",barcodeValue);
+                        obj = FirebaseDatabase.getInstance().getReference("Mysterio").child("RegisteredParticipants");
+                        obj.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.child(barcodeValue).exists()){
+                                    try {
+                                        Toast.makeText(getApplicationContext(),"PARTICIPANT ALREADY REGISTERED",Toast.LENGTH_LONG).show();
+                                        onBackPressed();
+                                    }
+                                    catch (Exception e) {
+                                        Log.e("HERE", e.getMessage());
+                                    }
+                                }
+                                else{
+                                    userDetails = pojo_userDetails.getInstanceOf();
+                                    if (!userDetails.isUserRegisteredOne()) {
+                                        Log.e("HERE", temp.userName);
+                                        userDetails.setParticipantOneUniqueId(temp.uniqueId);
+                                        userDetails.setParticipantOne(temp.userName);
+                                        userDetails.setPhoneNumberOne(temp.phoneNumber);
+                                        userDetails.setCollegeNameOne(temp.collegeName);
+                                        userDetails.setUserRegisteredOne(true);
+                                        userDetails.setBarcodeValueOne(temp.barCodeValue);
+                                        MainActivity.name1.setText(userDetails.getParticipantOne());
+                                        MainActivity.phone1.setText(userDetails.getPhoneNumberOne());
+                                        MainActivity.clg1.setText(userDetails.getCollegeNameOne());
+                                    }
+                                    else{
+                                        Log.e("HERE1", temp.userName);
+                                        userDetails.setUserRegisteredTwo(true);
+                                        userDetails.setParticipantTwoUniqueId(temp.uniqueId);
+                                        userDetails.setParticipantTwo(temp.userName);
+                                        userDetails.setPhoneNumberTwo(temp.phoneNumber);
+                                        userDetails.setCollegeNameTwo(temp.collegeName);
+                                        userDetails.setBarcodeValueTwo(temp.barCodeValue);
+                                        MainActivity.name2.setText(userDetails.getParticipantTwo());
+                                        MainActivity.phone2.setText(userDetails.getPhoneNumberTwo());
+                                        MainActivity.clg2.setText(userDetails.getCollegeNameTwo());
+                                    }
+                                }
                             }
-                            else{
-                                userDetails = pojo_userDetails.getInstanceOf();
-                                Log.e("HERE1",temp.phoneNumber);
-                                Log.e("HERE1",temp.uniqueId);
-                                Log.e("HERE1",temp.userName);
-                                userDetails.setParticipantTwoUniqueId(temp.uniqueId);
-                                userDetails.setParticipantTwo(temp.userName);
-                                userDetails.setPhoneNumberTwo(temp.phoneNumber);
-                                MainActivity.name2.setText(userDetails.getParticipantTwo());
-                                MainActivity.phone2.setText(userDetails.getPhoneNumberTwo());
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
                             }
-                        }
+                        });
                     } catch (Exception e) {
                         Log.e("HEREZOO", e.getMessage());
                     }
-
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"USER NOT REGISTERED",Toast.LENGTH_LONG).show();
@@ -88,9 +108,9 @@ public class scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
             }
         });
-        finish();
         onBackPressed();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
