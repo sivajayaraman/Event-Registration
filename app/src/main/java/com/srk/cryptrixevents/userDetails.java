@@ -59,6 +59,8 @@ public class userDetails extends AppCompatActivity {
                         }
                         else
                         {
+                            Button bt = findViewById(R.id.button1);
+                            bt.setVisibility(View.VISIBLE);
                             tv = findViewById(R.id.participantOne);
                             tv.setText(teamDetailsObject.participantOne);
                             tv = findViewById(R.id.college);
@@ -94,25 +96,36 @@ public class userDetails extends AppCompatActivity {
     public void callParticipant(View view){
         switch (view.getId()){
             case R.id.button1 :
-                if(teamDetailsObject.userRegisteredOne){
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse(teamDetailsObject.phoneNumberOne));
-                    startActivity(callIntent);
+                try {
+                    if (teamDetailsObject.userRegisteredOne) {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL,Uri.fromParts("tel",teamDetailsObject.phoneNumberOne,null));
+                        startActivity(callIntent);
+                    } else {
+                        Toast.makeText(this, "SOME INTERNAL ERROR! SORRY!", Toast.LENGTH_LONG).show();
+                    }
+                    break;
                 }
-                else{
-                    Toast.makeText(this, "SOME INTERNAL ERROR! SORRY!", Toast.LENGTH_LONG).show();
+                catch(Exception e){
+                    Log.e("HERE",e.getMessage());
+                    Toast.makeText(this, "ERROR..TRY AGAIN", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
-                break;
             case R.id.button2 :
-                if(teamDetailsObject.userRegisteredTwo){
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse(teamDetailsObject.phoneNumberOne));
-                    startActivity(callIntent);
+                try {
+                    if (teamDetailsObject.userRegisteredTwo) {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL,Uri.fromParts("tel", teamDetailsObject.phoneNumberTwo, null));
+                        startActivity(callIntent);
+                    } else {
+                        Toast.makeText(this, "SOME INTERNAL ERROR! SORRY!", Toast.LENGTH_LONG).show();
+                    }
+                    break;
                 }
-                else{
-                    Toast.makeText(this, "SOME INTERNAL ERROR! SORRY!", Toast.LENGTH_LONG).show();
+                catch(Exception e){
+                    Log.e("HERE",e.getMessage());
+                    Toast.makeText(this, "ERROR..TRY AGAIN", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
-                break;
+            default: break;
         }
     }
 }
