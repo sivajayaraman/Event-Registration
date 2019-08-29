@@ -1,18 +1,18 @@
 package com.srk.cryptrixevents;
 
 public class pojo_userDetails {
-    String participantOneUniqueId;
-    String participantTwoUniqueId;
-    String participantOne;
-    String participantTwo;
-    String phoneNumberOne;
-    String phoneNumberTwo;
-    boolean userRegisteredOne = false;
-    boolean userRegisteredTwo = false;
-    String collegeNameOne;
-    String CollegeNameTwo;
-    String barcodeValueOne;
-    String barcodeValueTwo;
+    String p1;
+    String p2;
+    String n1;
+    String n2;
+    String pn1;
+    String pn2;
+    boolean r1 = false;
+    boolean r2 = false;
+    String c1;
+    String c2;
+    String b1;
+    String b2;
 
     private static pojo_userDetails dataHolder = null;
 
@@ -28,97 +28,97 @@ public class pojo_userDetails {
         }
         return dataHolder;
     }
-    public void setParticipantOneUniqueId(String participantOneUniqueId) {
-        this.participantOneUniqueId = participantOneUniqueId;
+    public void setp1(String p1) {
+        this.p1 = p1;
     }
 
-    public void setParticipantTwoUniqueId(String participantTwoUniqueId) {
-        this.participantTwoUniqueId = participantTwoUniqueId;
+    public void setp2(String p2) {
+        this.p2 = p2;
     }
 
-    public void setParticipantOne(String participantOne) {
-        this.participantOne = participantOne;
+    public void setn1(String n1) {
+        this.n1 = n1;
     }
 
-    public void setParticipantTwo(String participantTwo) {
-        this.participantTwo = participantTwo;
+    public void setn2(String n2) {
+        this.n2 = n2;
     }
 
-    public void setPhoneNumberOne(String phoneNumberOne) {
-        this.phoneNumberOne = phoneNumberOne;
+    public void setpn1(String pn1) {
+        this.pn1 = pn1;
     }
 
-    public void setPhoneNumberTwo(String phoneNumberTwo) {
-        this.phoneNumberTwo = phoneNumberTwo;
+    public void setpn2(String pn2) {
+        this.pn2 = pn2;
     }
 
-    public String getParticipantOneUniqueId() {
-        return participantOneUniqueId;
+    public String getp1() {
+        return p1;
     }
 
-    public String getParticipantTwoUniqueId() {
-        return participantTwoUniqueId;
+    public String getp2() {
+        return p2;
     }
 
-    public String getParticipantOne() {
-        return participantOne;
+    public String getn1() {
+        return n1;
     }
 
-    public String getParticipantTwo() {
-        return participantTwo;
+    public String getn2() {
+        return n2;
     }
 
-    public String getPhoneNumberOne() {
-        return phoneNumberOne;
+    public String getpn1() {
+        return pn1;
     }
 
-    public String getPhoneNumberTwo() {
-        return phoneNumberTwo;
+    public String getpn2() {
+        return pn2;
     }
-    public boolean isUserRegisteredOne() {
-        return userRegisteredOne;
-    }
-
-    public void setUserRegisteredOne(boolean userRegisteredOne) {
-        this.userRegisteredOne = userRegisteredOne;
+    public boolean isr1() {
+        return r1;
     }
 
-    public boolean isUserRegisteredTwo() {
-        return userRegisteredTwo;
+    public void setr1(boolean r1) {
+        this.r1 = r1;
     }
 
-    public void setUserRegisteredTwo(boolean userRegisteredTwo) {
-        this.userRegisteredTwo = userRegisteredTwo;
+    public boolean isr2() {
+        return r2;
     }
 
-    public String getCollegeNameOne() {
-        return collegeNameOne;
+    public void setr2(boolean r2) {
+        this.r2 = r2;
     }
 
-    public void setCollegeNameOne(String collegeNameOne) {
-        this.collegeNameOne = collegeNameOne;
+    public String getc1() {
+        return c1;
     }
 
-    public String getCollegeNameTwo() {
-        return CollegeNameTwo;
+    public void setc1(String c1) {
+        this.c1 = c1;
     }
 
-    public void setCollegeNameTwo(String collegeNameTwo) {
-        CollegeNameTwo = collegeNameTwo;
-    }
-    public String getBarcodeValueOne() {
-        return barcodeValueOne;
+    public String getc2() {
+        return c2;
     }
 
-    public void setBarcodeValueOne(String barcodeValueOne) {
-        this.barcodeValueOne = barcodeValueOne;
+    public void setc2(String c2) {
+        this.c2 = c2;
+    }
+    public String getb1() {
+        return b1;
     }
 
-    public String getBarcodeValueTwo() {
-        return barcodeValueTwo;
+    public void setb1(String b1) {
+        this.b1 = b1;
     }
 
-    public void setBarcodeValueTwo(String barcodeValueTwo) {
-        this.barcodeValueTwo = barcodeValueTwo;
+    public String getb2() {
+        return b2;
+    }
+
+    public void setb2(String b2) {
+        this.b2 = b2;
     }
 }

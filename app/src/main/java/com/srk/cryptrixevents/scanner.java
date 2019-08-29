@@ -43,7 +43,7 @@ public class scanner extends AppCompatActivity implements ZXingScannerView.Resul
                         temp = new pojo_ObjectHolder();
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
                             temp = child.getValue(pojo_ObjectHolder.class);
-                            if (temp.barCodeValue.equals(barcodeValue)) {
+                            if (temp.b.equals(barcodeValue)) {
                                 break;
                             }
                         }
@@ -63,29 +63,30 @@ public class scanner extends AppCompatActivity implements ZXingScannerView.Resul
                                 }
                                 else{
                                     userDetails = pojo_userDetails.getInstanceOf();
-                                    if (!userDetails.isUserRegisteredOne()) {
-                                        Log.e("HERE", temp.userName);
-                                        userDetails.setParticipantOneUniqueId(temp.uniqueId);
-                                        userDetails.setParticipantOne(temp.userName);
-                                        userDetails.setPhoneNumberOne(temp.phoneNumber);
-                                        userDetails.setCollegeNameOne(temp.collegeName);
-                                        userDetails.setUserRegisteredOne(true);
-                                        userDetails.setBarcodeValueOne(temp.barCodeValue);
-                                        MainActivity.name1.setText(userDetails.getParticipantOne());
-                                        MainActivity.phone1.setText(userDetails.getPhoneNumberOne());
-                                        MainActivity.clg1.setText(userDetails.getCollegeNameOne());
+                                    //userDetails.clearDataHolder();
+                                    if (!userDetails.isr1()) {
+                                        Log.e("HERE", temp.u);
+                                        userDetails.setp1(temp.id);
+                                        userDetails.setn1(temp.u);
+                                        userDetails.setpn1(temp.p);
+                                        userDetails.setc1(temp.e);
+                                        userDetails.setr1(true);
+                                        userDetails.setb1(temp.b);
+                                        MainActivity.name1.setText(userDetails.getn1());
+                                        MainActivity.phone1.setText(userDetails.getpn1());
+                                        MainActivity.clg1.setText(userDetails.getc1());
                                     }
                                     else{
-                                        Log.e("HERE1", temp.userName);
-                                        userDetails.setUserRegisteredTwo(true);
-                                        userDetails.setParticipantTwoUniqueId(temp.uniqueId);
-                                        userDetails.setParticipantTwo(temp.userName);
-                                        userDetails.setPhoneNumberTwo(temp.phoneNumber);
-                                        userDetails.setCollegeNameTwo(temp.collegeName);
-                                        userDetails.setBarcodeValueTwo(temp.barCodeValue);
-                                        MainActivity.name2.setText(userDetails.getParticipantTwo());
-                                        MainActivity.phone2.setText(userDetails.getPhoneNumberTwo());
-                                        MainActivity.clg2.setText(userDetails.getCollegeNameTwo());
+                                        Log.e("HERE1", temp.u);
+                                        userDetails.setr2(true);
+                                        userDetails.setp2(temp.id);
+                                        userDetails.setn2(temp.u);
+                                        userDetails.setpn2(temp.p);
+                                        userDetails.setc2(temp.e);
+                                        userDetails.setb2(temp.b);
+                                        MainActivity.name2.setText(userDetails.getn2());
+                                        MainActivity.phone2.setText(userDetails.getpn2());
+                                        MainActivity.clg2.setText(userDetails.getc2());
                                     }
                                 }
                             }

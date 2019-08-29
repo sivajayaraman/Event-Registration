@@ -43,15 +43,15 @@ public class MainActivity extends AppCompatActivity  {
             EditText et = findViewById(R.id.teamId);
             if (!et.getText().toString().isEmpty()) {
                 final String teamName = "mysterio" + et.getText().toString();
-                if (userDetails.isUserRegisteredOne() && userDetails.isUserRegisteredTwo()) {
+                if (userDetails.isr1() && userDetails.isr2()) {
                     db = FirebaseDatabase.getInstance().getReference("Mysterio");
                     db.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (!dataSnapshot.child(teamName).exists()) {
                                 db.child(teamName).setValue(userDetails);
-                                db.child("RegisteredParticipants").child(userDetails.getBarcodeValueOne()).setValue(teamName);
-                                db.child("RegisteredParticipants").child(userDetails.getBarcodeValueTwo()).setValue(teamName);
+                                db.child("RegisteredParticipants").child(userDetails.getb1()).setValue(teamName);
+                                db.child("RegisteredParticipants").child(userDetails.getb2()).setValue(teamName);
                             } else {
                                 Toast.makeText(getApplicationContext(), "TEAM ID EXISTS", Toast.LENGTH_LONG).show();
                             }
@@ -66,14 +66,14 @@ public class MainActivity extends AppCompatActivity  {
                     startActivity(new Intent(this,MainActivity.class));
                     finish();
                 }
-                else if (userDetails.isUserRegisteredOne()) {
+                else if (userDetails.isr1()) {
                     db = FirebaseDatabase.getInstance().getReference("Mysterio");
                     db.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (!dataSnapshot.child(teamName).exists()) {
                                 db.child(teamName).setValue(userDetails);
-                                db.child("RegisteredParticipants").child(userDetails.getBarcodeValueOne()).setValue(teamName);
+                                db.child("RegisteredParticipants").child(userDetails.getb1()).setValue(teamName);
                             } else {
                                 Toast.makeText(getApplicationContext(), "TEAM ID EXISTS", Toast.LENGTH_LONG).show();
                             }

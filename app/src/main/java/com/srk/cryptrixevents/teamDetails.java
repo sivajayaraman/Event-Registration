@@ -1,16 +1,16 @@
 package com.srk.cryptrixevents;
 
 public class teamDetails {
-    public String participantOneUniqueId;
-    public String participantTwoUniqueId;
-    public String participantOne;
-    public String participantTwo;
-    public String phoneNumberOne;
-    public String phoneNumberTwo;
-    public boolean userRegisteredOne;
-    public boolean userRegisteredTwo;
-    public String collegeNameOne;
+    public String p1;
+    public String p2;
+    public String n1;
+    public String n2;
+    public String pn1;
+    public String pn2;
+    public boolean r1;
+    public boolean r2;
+    public String c1;
     public String collegeNameTwo;
-    public String barcodeValueOne;
-    public String barcodeValueTwo;
+    public String b1;
+    public String b2;
 }
